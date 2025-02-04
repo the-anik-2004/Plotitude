@@ -1,0 +1,84 @@
+@use "../../responsive.scss" as *;
+
+.filter{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+    h1{
+        font-weight: 300;
+        color: rgb(65, 63, 63);
+        font-size: 24px;
+        b{
+            color: black;
+        }
+    }
+    .item{
+        display: flex;
+        // flex-direction: row;
+        flex-direction: column;
+        gap:2px;
+
+        label{
+            font-size: 10px;
+        }
+
+        input,select{
+            width: 100px;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+        }
+    }
+    .top{
+        input{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+        }
+    }
+    .bottom{
+        display: flex;
+        flex-direction: row;
+    
+        gap: 20px;
+        
+    
+        .resTop,.resBottom{
+         
+            display: flex;
+            flex-direction: row;
+            // justify-content: space-evenly;
+            gap: 20px;
+        }
+        @include sm{
+            flex-direction: column;
+        }
+        
+        button{
+            width: 100px;
+            padding: 10px;
+            border:none;
+            cursor: pointer;
+            background-color: #fece51;
+        }
+    }
+    filter {
+    .bottom {
+      flex-direction: column;
+      align-items: stretch;
+
+      .item {
+        width: 100%; /* Make the items take full width */
+      }
+
+      button {
+        align-self: center; /* Center-align the button */
+        width: 50%; /* Adjust button width for a better look */
+      }
+    }
+  }
+
+
+
+
+}

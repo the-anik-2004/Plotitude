@@ -1,0 +1,127 @@
+@use "../../responsive.scss" as *;
+.chat{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
+    
+    
+    h1{
+        font-weight: bold;
+        font-size: 26px;
+    }
+    // background-color:yellow;
+    .messages{
+        flex:1;
+        padding:0px 10px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        scrollbar-color: #fece51;
+        scroll-behavior:smooth;
+        article{
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: larger;
+            font-weight: 600;
+        }
+    }
+
+    .chatBox{
+        border-radius: 15px;
+        height: 350px;
+        aspect-ratio: 1/1;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 999;
+
+
+        @include sm{
+            height: 300px;
+        }
+        
+        .top{
+           background-color: #f7c14b85;
+           padding: 20px; 
+           font-weight: bold;
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           border-radius: 15px 15px 0 0  ;
+           .user{
+            display: flex;
+            align-items: center;
+            gap:20px;
+            img{
+                width: 30px;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 50%;
+                box-shadow: 0 0 2px;
+            }
+           }
+           .close{
+            cursor: pointer;
+           }
+        }
+        .center{
+            background:url('../../../public/chatBG2.webp');
+            background-position: center;
+            background-size: contain;
+            padding: 20px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .chatMessage{
+                 display: flex;
+                flex-direction: column;
+                width: max-content;
+                background-color: rgb(49, 47, 47);
+                color: aliceblue;
+                padding: 10px;
+                border-radius: 15px;
+                span{
+                    font-size: 12px;
+                    align-self: flex-end;
+                    color: yellow;
+                }
+                &.own{
+                    align-self: flex-end;
+                    background-color: rgb(4, 128, 35);
+                    span{color:yellow;}
+                    
+                }
+            }
+        }
+        .bottom{
+            border-top: 2px solid #f7c14b85;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            textarea{
+                flex:3;
+                height: 100%;
+                border: none;
+                padding: 20px;
+            }
+            button{
+                flex:1;
+                background-color: #f7c14b85;
+                height: 100%;
+                cursor: pointer;
+            }
+        }
+    }
+}

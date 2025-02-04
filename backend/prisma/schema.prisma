@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+model Post{
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  title  String  
+  price     Int
+  images String[]
+  address  String
+  city    String
+  bedroom Int
+  bathroom Int
+  latitude String
+  longitude String
+  type Type
+  property Property
+  userId String @db.ObjectId
+  user User @relation(fields: [userId],references: [id])
+  createdAt DateTime  @default(now())
+  postDetail PostDetail?
+  savedPosts SavedPost[]
+}
+
+enum Type {
+  buy
+  rent
+}
+
+enum Property {
+  apartment
+  house
+  condo 
+  land
+}
+
+model PostDetail{
+  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  desc String
+  utilites String?
+  pet String?
+  income String?
+  size Int?
+  bus Int?
+  school Int?
+  restaurant Int?
+  post Post @relation(fields:[postId],references: [id], onDelete: Cascade)
+  postId String @db.ObjectId @unique
+}
+
+model SavedPost {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  userId    String   @db.ObjectId @unique
+  postId    String   @db.ObjectId @unique
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId]) // Ensure the combination is unique
+}
+
+model User{
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  username  String  @unique
+  email     String  @unique
+  password  String
+  avatar    String?
+  createdAt DateTime  @default(now())
+  post Post[]
+  savedPosts SavedPost[]
+  chats Chat[] @relation(fields: [chatIds],references: [id])
+  chatIds String[] @db.ObjectId
+}
+
+model Chat {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  users User[] @relation(fields: [userIds],references: [id])
+  userIds String[] @db.ObjectId
+  createdAt DateTime @default(now())
+  seenBy String[] @db.ObjectId
+  messages Message[] 
+  lastMessage String?
+}
+
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  text String
+  userId String
+  chat Chat @relation(fields: [chatId],references: [id])
+  chatId String @db.ObjectId
+  createdAt DateTime @default(now())
+}
+
+
+//    📝NOTE:Whenever any changes occur in schema.prisma file (i.e. this file) you have to save the changes by writing the command 
+//    💻 "npx prisma db push"

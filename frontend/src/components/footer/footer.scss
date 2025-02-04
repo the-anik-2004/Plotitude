@@ -1,0 +1,17 @@
+.footer{
+    background: rgba(0, 0, 0, 0.196);
+    color: rgb(65, 64, 64);
+    height: 50px;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    a{
+        color:#fa8f15;
+    }
+}

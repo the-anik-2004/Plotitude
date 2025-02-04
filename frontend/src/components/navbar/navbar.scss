@@ -1,0 +1,198 @@
+@use "../../responsive.scss" as *;
+
+nav{
+    height:100px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    align-items: center;
+
+    a{
+        transition: all 0.4s ease;
+        cursor: pointer;
+        &:hover{
+            scale: 1.05;
+        }
+       
+    }
+
+    .left{
+        flex:3;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        // .logo> img{
+        //     width: 250px;
+        //     @include sm{
+        //         width: 150px;
+        //     }
+        // }
+        .logo{
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size:xx-large;
+            font-family :Verdana, Geneva, Tahoma, sans-serif;
+            img{
+                width: 80px;
+            }
+        }
+        @include lg{
+            padding-right: 140px;
+        }
+        @include md{
+            padding-right: 0px;
+        }
+        a{
+            span{
+                @include md{
+                    display: none;
+                }
+                @include sm{
+                    display:contents;
+                }
+            }
+            @include sm{
+                display: none;
+            }
+        }
+       
+    }
+
+    .right{
+        flex:2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: #fcf5f3;
+        height:100%;
+        .register{
+            cursor: pointer;
+            background-color: #fcec51;
+            border-radius: 15px ;
+            position: relative;
+        }
+
+        .profile{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            height: 100%;
+            
+            .notification{
+                position: absolute;
+                background-color: red;
+                color: #fff;
+                height: 26px;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: -8px;
+                right: -8px;
+            }
+            img{
+                height: 40px;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                object-fit: cover;
+                box-shadow: 0 0 4px;
+                @include sm{
+                    &.ndp{
+                        display: none;
+                    }
+                }
+            }
+            .dp{
+                background-color:red;
+                height: 100px;
+                width: 100px;
+                cursor: pointer;
+                display: none;
+                @include sm{
+                    display: contents;
+                }
+                 .mobNotification{
+                position: absolute;
+                background-color: red;
+                color: #fff;
+                height: 20px;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: 25px;
+                right: 85px;
+            }
+            }
+            span{
+                font-weight: 600;
+            }
+            @include md{
+                span{
+                    display: none;
+                }
+            }
+           
+
+        }
+    
+        @include md{
+            
+            background-color: transparent;
+        }
+        a{
+            padding: 12px 24px;
+            margin: 20px;
+            @include sm{
+            display: none;
+            }
+        }
+     
+      
+        .menuIcon{
+            display: none;
+            @include sm{
+                margin-left: 10px;
+                display: block;
+                z-index: 1002;
+                cursor: pointer;
+                
+            }
+            img{
+                width: 60px;
+                cursor: pointer;
+              
+            }
+        }
+        .menu{
+            position: fixed;
+            top: 0;
+            right: -100%;
+            transition: all 10s ease;
+            background: #000;
+            color: #fcf5f3;
+            height: 100vh;
+            width:50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            font-size:x-large;
+            transition: right 1s ease;
+            z-index: 1001;
+           
+            &.active{
+           right: 0;
+            }
+            @include sm{
+                a{
+                    display: initial;
+                }
+            }
+        }
+    }
+}

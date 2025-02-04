@@ -1,0 +1,39 @@
+@use "../responsive.scss" as *;
+
+.layout{
+    height: fit-content;
+    max-width: 1366px;
+    margin:0 auto;
+    padding:0 20px;
+    display: flex;
+
+    flex-direction: column;
+    
+ 
+    @include lg{
+        max-width: 1240px;
+    }
+    
+    @include md{
+       
+        max-width: 768px;
+    }
+    
+    @include sm{
+        max-width: 640px;
+   
+    }
+
+    .content{
+        // flex: 1;
+        height:calc(100vh - 100px) ;
+    }
+    // footer{
+   
+    // width: 100vw;
+    //  margin-left: auto;
+    //  margin-right: auto;
+    //  position: absolute;
+    //  bottom: 0;
+    // }
+}

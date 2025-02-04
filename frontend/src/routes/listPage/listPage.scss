@@ -1,0 +1,77 @@
+@use "../../responsive.scss" as *;
+.listPage{
+    display: flex;
+    height: 100%;
+    @include md{
+        flex-direction: column;
+        overflow: scroll;
+        scrollbar-width: none;
+    }
+
+
+   .loadingIndicator{ display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; // Full height for spinner
+    width: 100%;
+    background-color: #f8f9fa; // Optional: match page background
+    }
+
+ 
+
+    .listContainer{
+        flex: 3;
+        overflow-y: scroll;
+        scrollbar-width: thin; /* Sets a small width for the scrollbar in Firefox */
+        scrollbar-color: #fece51 transparent;
+        margin-bottom: 80px;
+        height: 95%;
+
+
+        .wrapper{
+        
+            height: 100%;
+            padding-right: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            article{
+                height:100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 700;
+                font-size: x-large;
+            }
+          
+        }
+        @include md{
+            flex: none;
+            width: 100%;
+            padding-left:0px;
+        }
+       
+    }
+    .mapContainer{
+        
+        flex: 1.6;
+        height: 100%;
+        background-color: #fcf5f3;
+        @include md{
+            flex: none;
+            height: 300px;
+            cursor:no-drop;
+            margin-bottom: 150px;
+        }
+        article{
+            height:100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: large;
+        }
+    }
+}
