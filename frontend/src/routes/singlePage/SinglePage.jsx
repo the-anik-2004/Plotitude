@@ -13,6 +13,7 @@ const SinglePage = () => {
   const post = useLoaderData();
   const { currentUser } = useContext(AuthContext);
 
+  console.log(post.user.id)
   // Reducer for optimistic updates
   const [saved, dispatch] = useReducer((state, action) => {
     switch (action.type) {
@@ -24,12 +25,23 @@ const SinglePage = () => {
   }, post.isSaved);
 
   //handle chat
-  const handleChat = () => {
+  const handleChat =async () => {
     if (!currentUser) {
       navigate("/login");  // Ensure user is logged in
       return;
     }
-    navigate(`/profile`);  // Navigate to chat page with user ID
+    try {
+      const res=await apiRequest("/chats",{
+        where:{
+
+        }
+      })
+      console.log(res.data);
+      await apiRequest.post("/chats",{receiverId:post.user.id});
+      navigate(`/profile`);
+    } catch (error) {
+      console.log(error);
+    }
     
   };
 

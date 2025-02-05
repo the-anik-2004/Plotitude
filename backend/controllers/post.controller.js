@@ -12,6 +12,7 @@ export const getPost=async(req,res)=>{
                     postDetail:true,
                     user:{
                         select:{
+                            id:true,
                             username:true,
                             avatar:true
                         }
@@ -54,15 +55,10 @@ export const getPost=async(req,res)=>{
 
 //get all Posts
 export const getPosts=async(req,res)=>{
+    const tokenUserId = req.userId;
     const query=req.query;
-    console.log("-"+query);
     try {
-        const savedPost=await prisma.savedPost.findFirst({
-            where:{
-                    userId:tokenUserId,
-                    postId,
-            },
-        });
+     
         const posts=await prisma.post.findMany({
             where:{
                 city: query.city ? {
@@ -79,7 +75,7 @@ export const getPosts=async(req,res)=>{
                 }
             }
         });
-        return res.status(200).json({...posts,isSaved:savedPost?true:false});
+        return res.status(200).json(posts);
     } catch (error) {
         console.log(error)
         return res.status(500).json({message:"failed to fetch posts❌"})

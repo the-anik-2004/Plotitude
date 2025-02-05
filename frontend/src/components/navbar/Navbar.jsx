@@ -28,7 +28,7 @@ const Navbar = () => {
           <span>Plotitude</span>
         </a>
         <a href="/">Home</a>
-        <a href="">About</a>
+        <a href="/list">Plots</a>
         <a href="">Contacts</a>
         <a href="">Agents</a>
       </div>
@@ -62,12 +62,12 @@ const Navbar = () => {
                 <img src="menu.png" alt="Menu Button" onClick={()=>setOpen(!open)}/>
               </div>
               <div className={open?'menu active':'menu'}>
-              <a href="">Home</a>
-              <a href="">About</a>
+              <a href="/">Home</a>
+              <a href="/list">Plots</a>
               <a href="">Contacts</a>
               <a href="">Agents</a>
-              <a href="">Sign in</a>
-              <a href="" >Sign up</a>
+              <a href="/login">Sign in</a>
+              <a href="/register" >Sign up</a>
             
         </div>
        

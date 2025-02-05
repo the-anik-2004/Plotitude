@@ -9,7 +9,7 @@ const Message = ({dp,username,sms,onClick,style}) => {
       <img src={dp} alt="" />
       <div className='text'>
       <span>{username}</span>
-      <p>{sms.slice(0,30).concat("...")}</p>
+      <p>{sms?.length<31 ? sms : sms?.slice(0,31).concat("...")}</p>
       </div>
         
     </div>

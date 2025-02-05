@@ -93,7 +93,7 @@ const Chat = ({chatData}) => {
                   key={chatItem.id}
                   dp={chatItem.receiver.avatar||`noAvatar.jpeg`}
                   username={chatItem.receiver.username}
-                  sms={chatItem.lastMessage}
+                  sms={chatItem.lastMessage||"Start conversation🏡"}
                   style={{
                     backgroundColor:chatItem.seenBy.includes(currentUser.id)||chat?.id===chatItem.id ?"white":"yellow"
                   }}
