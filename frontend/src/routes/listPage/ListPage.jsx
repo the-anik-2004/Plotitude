@@ -17,7 +17,7 @@ const ListPage = () => {
       setLoading(false);},500)
      
   },[dataFormLoader])
-  console.log(data)
+  // console.log(data)
   return (
     <div className='listPage'>
 

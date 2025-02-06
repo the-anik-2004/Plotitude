@@ -19,3 +19,9 @@ export const profilePageLoader = async () => {
   return {postResponse,chatResponse};
 };
 
+export const contactPageLoader = async () => {
+  const postResponse =await apiRequest("/users");
+  const filterData=postResponse.data.map(({chatIds,password,...data})=>data);
+  return filterData;
+};
+

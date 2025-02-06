@@ -12,7 +12,9 @@ import Login from "./routes/login/Login.jsx";
 import Profile from "./routes/profile/Profile.jsx";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage.jsx";
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
-import { singlePageLoader,listPageLoader, profilePageLoader } from "./lib/loader.js";
+import Contact from "./routes/contact/Contact.jsx";
+import { singlePageLoader,listPageLoader, profilePageLoader, contactPageLoader } from "./lib/loader.js";
+import DeveloperContact from "./routes/DeveloperContact/DeveloperContact.jsx";
 
 
 function App() {
@@ -37,6 +39,15 @@ function App() {
         {
           path:"/login",
           element:<Login/>
+        },
+        {
+          path:"/contact",
+          element:<Contact/>,
+          loader:contactPageLoader,
+        },
+        {
+          path:"/dev",
+          element:<DeveloperContact/>,
         },
         {
           path:"/:id",
