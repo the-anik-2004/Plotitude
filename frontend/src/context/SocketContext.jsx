@@ -12,10 +12,10 @@ export const SocketContextProvider = ({ children }) => {
         const socketServerUrl = "https://plotitude-socket.onrender.com";
 
         const newSocket = io(socketServerUrl, {
-            transports: ["websocket"], // Force WebSocket over polling
-            reconnection: true, // Enable automatic reconnection
-            reconnectionAttempts: 5, // Retry 5 times before failing
-            reconnectionDelay: 3000, // Wait 3 seconds between attempts
+            transports: ["websocket"], // Use WebSocket transport
+            reconnection: true, // Auto-reconnect if disconnected
+            reconnectionAttempts: 5, // Try reconnecting 5 times
+            reconnectionDelay: 3000, // Wait 3 seconds before retrying
         });
 
         setSocket(newSocket);
@@ -29,7 +29,7 @@ export const SocketContextProvider = ({ children }) => {
         if (currentUser && socket) {
             socket.emit("newUser", currentUser.id);
         }
-    }, [currentUser, socket]);
+    }, [currentUser, socket]); // ✅ Make sure `socket` is not null before emitting
 
     return (
         <SocketContext.Provider value={{ socket }}>
