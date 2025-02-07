@@ -1,5 +1,7 @@
 import {Server} from "socket.io";
+import express from "express";
 
+const app=express();
 const io=new Server({
     cors:{
         origin:"https://plotitude.onrender.com",
@@ -36,4 +38,7 @@ io.on("connection",(socket)=>{
     })
 })
 
-io.listen("4000")
+io.listen("4000");
+app.get("/socket-status", (req, res) => {
+    res.send("Socket.IO server is running");
+});
