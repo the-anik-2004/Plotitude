@@ -1,11 +1,11 @@
 import React, { useContext, useEffect ,useState} from 'react'
 import "./profile.scss";
 
-import List from '../../components/list/List';
-import Chat from '../../components/chat/chat';
+import List from '../../components/list/List.jsx';
+import Chat from '../../components/chat/Chat.jsx';
 import apiRequest from '../../lib/apiRequest.js';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import {ClipLoader} from "react-spinners"
 import { useLoaderData } from 'react-router-dom';
