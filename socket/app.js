@@ -2,7 +2,7 @@ import {Server} from "socket.io";
 
 const io=new Server({
     cors:{
-        origin:"http://localhost:5173",
+        origin:"https://plotitude.onrender.com",
     }
 });
 
@@ -24,7 +24,7 @@ const removeUser=(socketId)=>{
 io.on("connection",(socket)=>{
     socket.on("newUser",(userId)=>{
         addUser(userId,socket.id)
-        // console.log(onlineUser)
+        
     });
 
     socket.on("disconnect",()=>{removeUser(socket.id)})
