@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import { io } from "socket.io-client";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "./AuthContext.jsx";
 
 export const SocketContext = createContext();
 
@@ -20,9 +20,9 @@ export const SocketContextProvider = ({ children }) => {
 
         setSocket(newSocket);
 
-        return () => {
-            newSocket.disconnect();
-        };
+        // return () => {
+        //     newSocket.disconnect();
+        // };
     }, []);
 
     useEffect(() => {
