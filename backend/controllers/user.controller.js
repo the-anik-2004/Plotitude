@@ -114,26 +114,36 @@ export const savePost=async(req,res)=>{
 }
 
 //profile Posts
-export const profilePosts=async(req,res)=>{
-    const tokenUserId=req.params.userId;
+export const profilePosts = async (req, res) => {
+    const tokenUserId = req.userId;
+  
     try {
-       const userPosts=await prisma.post.findMany({
-           where:{userId:tokenUserId}
-       })
-       const saved=await prisma.savedPost.findMany({
-           where:{userId:tokenUserId},
-           include:{
-            post:true,
-           },
-       })
-
-       const savedPosts=saved.map((item)=>item.post)
-       return res.status(200).json({userPosts,savedPosts});
-  } catch (error) {
-   console.log(error)
-   return res.status(500).json({message:"Failed to get profile posts !"})
-  }
-}
+      // Ensure userId is a valid format (optional if you trust the input)
+      if (!tokenUserId) {
+        return res.status(400).json({ message: "User ID is required." });
+      }
+  
+      // Execute queries in parallel for better performance
+      const [userPosts, saved] = await Promise.all([
+        prisma.post.findMany({
+          where: { userId: tokenUserId },
+        }),
+        prisma.savedPost.findMany({
+          where: { userId: tokenUserId },
+          include: { post: true },
+        }),
+      ]);
+  
+      // Extract saved posts
+      const savedPosts = saved.map((item) => item.post);
+  
+      return res.status(200).json({ userPosts, savedPosts });
+    } catch (error) {
+      console.error("Error in profilePosts controller:", error);
+      return res.status(500).json({ message: "Failed to get profile posts!" });
+    }
+  };
+  
 // NOTIFICATION
 export const getNotificationNumber = async (req, res) => {
     const tokenUserId = req.userId;
