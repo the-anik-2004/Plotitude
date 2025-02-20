@@ -1,8 +1,8 @@
 import React, { useContext, useEffect ,useState} from 'react'
 import "./profile.scss";
 
-import List from '../../components/list/List.jsx';
-import Chat from '../../components/chat/Chat.jsx';
+import List from '../../components/list/List';
+// import Chat from '../../components/chat/chat';
 import apiRequest from '../../lib/apiRequest.js';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext.jsx';
@@ -76,10 +76,8 @@ const Profile = () => {
               </div>
             ):(
               postData && postData.length>0 ?
-             ( 
-              // postData.map((item)=>(
+             (
                 <List  item={postData}/>
-              // ))
             ):(
               <article>Post not found 😥</article>
             )
@@ -99,25 +97,23 @@ const Profile = () => {
             ):(
               savePostData && savePostData.length>0 ?
              ( 
-              // savePostData.map((item)=>(
                 <List  item={savePostData}/>
-              // ))
             ):(
               <article>You Don't have any Saved Posts 😥</article>
             )
 
             )}
-          {/* <List/> */}
+   
 
         </div>
       </div>
 
       {/* Chat section */}
-      <div className="chatContainer">
+      {/* <div className="chatContainer">
         <div className="wrapper">
           <Chat chatData={dataFormLoader.chatResponse.data}/>
         </div>
-      </div>
+      </div> */}
     </div>
     </>
   )

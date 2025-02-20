@@ -13,7 +13,6 @@ const SinglePage = () => {
   const post = useLoaderData();
   const { currentUser } = useContext(AuthContext);
 
-  console.log(post.user.id)
   // Reducer for optimistic updates
   const [saved, dispatch] = useReducer((state, action) => {
     switch (action.type) {
@@ -25,23 +24,12 @@ const SinglePage = () => {
   }, post.isSaved);
 
   //handle chat
-  const handleChat =async () => {
+  const handleChat = () => {
     if (!currentUser) {
       navigate("/login");  // Ensure user is logged in
       return;
     }
-    try {
-      const res=await apiRequest("/chats",{
-        where:{
-
-        }
-      })
-      console.log(res.data);
-      await apiRequest.post("/chats",{receiverId:post.user.id});
-      navigate(`/profile`);
-    } catch (error) {
-      console.log(error);
-    }
+    navigate(`/profile`);  // Navigate to chat page with user ID
     
   };
 
@@ -183,10 +171,10 @@ const SinglePage = () => {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-            <button onClick={handleChat}>
+            {/* <button onClick={handleChat}>
               <img src="./chat.png" alt="chat" />
               <span>Send a Message</span>
-            </button>
+            </button> */}
             <button onClick={handleSave} style={{
               backgroundColor: saved ? "lightgreen" : "white",
             }}>
