@@ -10,7 +10,7 @@ export const getUsers=async(req,res)=>{
      return res.status(200).json(users)
    } catch (error) {
     console.log(error)
-    return res.status(500).json({message:"Failed to get Users !"})
+    return res.status(500).json({message:"Failed to FETCH Users !"})
    }
 }
 //Getting user based upon the id
